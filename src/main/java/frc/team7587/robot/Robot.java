@@ -11,7 +11,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi = new OI();
 
   Command m_autoCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  // SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   @Override
   public void robotInit() {
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    Scheduler.getInstance().run();
+    // Scheduler.getInstance().run();
   }
 
   /**
@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autoCommand = m_chooser.getSelected();
+    // m_autoCommand = m_chooser.getSelected();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -70,7 +70,7 @@ public class Robot extends TimedRobot {
      * autonomousCommand = new ExampleCommand(); break; }
      */
 
-    // schedule the autonomous command (example)
+    // schedule the autonomous command
     if (m_autoCommand != null) {
       m_autoCommand.start();
     }
