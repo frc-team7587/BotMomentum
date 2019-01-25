@@ -17,18 +17,20 @@ import frc.team7587.robot.Robot;
  */
 public class TankDriveWithGamepad extends Command {
 
-  private Joystick gamepad;
+  private Joystick stick;
 
-  private int rightPort = OI.GAMEPAD_RIGHT_STICK_PORT;
+  private int stickPort = OI.LEFT_JOY;
+
 
   public TankDriveWithGamepad() {
-    gamepad  = Robot.m_oi.getGamepad();
+    stick = new Joystick(stickPort);
     requires(Robot.m_driveTrain);
   }
 
   @Override
   protected void execute() {
-    Robot.m_driveTrain.drive(gamepad.getY(), gamepad.getRawAxis(rightPort));
+    Robot.m_driveTrain.drive(((-0.5 * stick.getThrottle()) + 1.5) * -stick.getY(),
+                             0.5*stick.getTwist());
   }
 
 
