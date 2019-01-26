@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team7587.robot.commands.Autonomous;
 import frc.team7587.robot.subsystems.DriveTrain;
 
@@ -15,11 +17,13 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.vision.*;
 
 public class Robot extends TimedRobot {
+
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static OI m_oi = new OI();
   //Timer timer = new Timer();
 
   private CameraServer Camera;
+  private CameraServer Camera2;
 
   Command m_autoCommand;
   // SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -30,11 +34,18 @@ public class Robot extends TimedRobot {
     Camera = CameraServer.getInstance();
     Camera.startAutomaticCapture();
 
+    Camera2 = CameraServer.getInstance();
+    Camera2.startAutomaticCapture();
+
     m_autoCommand = new Autonomous();
 
     // m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    // SmartDashboard.putData("Auto mode", m_chooser);
+
+    SmartDashboard.putData("Drive Train", m_driveTrain);
+    SmartDashboard.putNumber("Joystick Y", m_oi.getLeftJoystick().getY());
+
+    LiveWindow.add(m_driveTrain);
   }
 
   /**
@@ -90,7 +101,7 @@ public class Robot extends TimedRobot {
      */
    // timer.reset();
     //timer.start();
-    
+
     // schedule the autonomous command
     if (m_autoCommand != null) {
       m_autoCommand.start();

@@ -12,7 +12,7 @@ public class OI {
 
   // Constants for motors
   public static int LEFT_MOTOR = 0;
-  public static int RIGHT_MOTOR = 0;
+  public static int RIGHT_MOTOR = 1;
 
   // input devices
   private final Joystick m_lefJoy = new Joystick(LEFT_JOY);
