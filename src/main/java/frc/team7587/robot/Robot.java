@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team7587.robot.commands.Autonomous;
 import frc.team7587.robot.subsystems.DriveTrain;
+import frc.team7587.robot.subsystems.Claw;
+import edu.wpi.first.wpilibj.Servo;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
@@ -20,6 +22,7 @@ public class Robot extends TimedRobot {
 
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static OI m_oi = new OI();
+  public static Claw m_claw;
   //Timer timer = new Timer();
 
   private CameraServer Camera;
@@ -46,6 +49,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Joystick Y", m_oi.getLeftJoystick().getY());
 
     LiveWindow.add(m_driveTrain);
+    m_claw = new Claw();
   }
 
   /**
