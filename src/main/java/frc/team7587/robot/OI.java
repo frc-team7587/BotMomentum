@@ -15,13 +15,13 @@ public class OI {
   public static int RIGHT_JOY = 1;
   public static int GAME_PAD = 0;   // logitech F310
   public static int GAMEPAD_RIGHT_STICK_PORT = 5;
-  public static int CLAW_SERVO = 9;
-  public static int OPEN_BUTTON = 1;
-  public static int CLOSE_BUTTON = 4;
 
   // Constants for motors
   public static int LEFT_MOTOR = 0;
   public static int RIGHT_MOTOR = 1;
+  public static int TEST_MOTOR = 2;
+
+  public static int CLAW_SERVO = 9;
 
   // input devices
   private final Joystick m_leftJoy = new Joystick(LEFT_JOY);
@@ -29,15 +29,21 @@ public class OI {
   private final Joystick m_gamePad = new Joystick(CLAW_SERVO);
 
   //Buttons
-  //private final Button padA = new JoystickButton(m_rightJoy, OPEN_BUTTON);
+  public static int OPEN_BUTTON = 1;
+  public static int CLOSE_BUTTON = 4;
+  private final Button padA = new JoystickButton(m_rightJoy, OPEN_BUTTON);
   private final Button padY = new JoystickButton(m_rightJoy, CLOSE_BUTTON);
 
 
 
   public OI() {
     
-    padY.whenReleased(new OpenClaw(1));
-    padY.whileHeld(new CloseClaw());
+    //padY.whenReleased(new OpenClaw(1));
+    //padY.whileHeld(new CloseClaw());
+    
+    padY.whenPressed(new OpenClaw(4));
+    padA.whenPressed(new CloseClaw(.5));
+
     // padZ.whenPress(new CloseClaw(3))
 
   }

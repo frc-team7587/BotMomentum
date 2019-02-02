@@ -28,7 +28,7 @@ public class TankDriveWithGamepad extends Command {
     //stick = new Joystick(stickPort);
     requires(Robot.m_driveTrain);
   }
-
+  //arcade drive with joystick
   @Override
   protected void execute() {
     Robot.m_driveTrain.drive(((-0.5 * stick.getThrottle()) + 1.5) * stick.getY(),

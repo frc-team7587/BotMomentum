@@ -8,7 +8,9 @@
 package frc.team7587.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.DMC60;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
 import frc.team7587.robot.OI;
 import frc.team7587.robot.Robot;
@@ -20,7 +22,7 @@ public class Claw extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   Servo claw = new Servo(OI.CLAW_SERVO);
-
+  SpeedController gripperJoint = new DMC60(OI.TEST_MOTOR);
 
   public void open() {
     claw.set(1.0);
@@ -31,8 +33,16 @@ public class Claw extends Subsystem {
   }
 
   public void stop(){
-    claw.set(-1);
+    claw.stopMotor();
+  //  claw.set(claw.get());
     //TODO 
+  }
+
+  public void pointDown(){
+    for (int a = 0 ; a < 50 ; a++){
+    gripperJoint.set(0.1);
+    }
+    gripperJoint.stopMotor();
   }
 
   @Override

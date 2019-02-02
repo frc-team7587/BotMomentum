@@ -31,7 +31,7 @@ public class OpenClaw extends TimedCommand {
     
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    // requires(Robot.m_claw);
+    requires(Robot.m_claw);
   }
 
   // Called just before this Command runs the first time
