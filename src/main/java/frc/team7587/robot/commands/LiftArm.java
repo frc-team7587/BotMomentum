@@ -7,62 +7,41 @@
 
 package frc.team7587.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.TimedCommand;
-import frc.team7587.robot.OI;
 import frc.team7587.robot.Robot;
+import frc.team7587.robot.subsystems.DriveTrain;
 
-public class CloseClaw extends TimedCommand {
-
-  // private Timer timer = new Timer();
-
-  // OI padPort = new OI();
-  // private Button padA = padPort.getPadA();
-  // private Joystick gamePad = padPort.getRightJoystick();
-  // private int padPort = OI.RIGHT_JOY;
-
-  public CloseClaw(double timeout) {
-    super(timeout);
+public class LiftArm extends Command {
+  public LiftArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(Robot.m_claw);
+    requires(Robot.m_driveTrain);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //timer.reset();
-    //timer.start();
-    Robot.m_claw.close();
   }
 
   // Called repeatedly when this Command is scheduled to run
- // @Override
- // protected void execute() {
-
-   // Robot.m_claw.close();
-
-  //}
+  @Override
+  protected void execute() {
+  }
 
   // Make this return true when this Command no longer needs to run execute()
- // @Override
- // protected boolean isFinished() {
-
-   // return timer.get() > 1;
-  //}
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.m_claw.stop();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
- // @Override
- // protected void interrupted() {
- // }
+  @Override
+  protected void interrupted() {
+  }
 }

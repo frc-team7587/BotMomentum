@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team7587.robot.commands.Autonomous;
 import frc.team7587.robot.subsystems.DriveTrain;
+import frc.team7587.robot.subsystems.GripArm;
 import frc.team7587.robot.subsystems.Claw;
 import edu.wpi.first.wpilibj.Servo;
 
@@ -22,7 +23,8 @@ public class Robot extends TimedRobot {
 
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static OI m_oi = new OI();
-  public static Claw m_claw = new Claw();
+  public static Claw m_claw;
+  public static GripArm arm = new GripArm();
   //Timer timer = new Timer();
 
   private CameraServer Camera;

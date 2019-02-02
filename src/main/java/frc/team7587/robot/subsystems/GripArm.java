@@ -8,34 +8,13 @@
 package frc.team7587.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.DMC60;
-import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Timer;
-import frc.team7587.robot.OI;
-import frc.team7587.robot.Robot;
 
 /**
  * Add your docs here.
  */
-public class Claw extends Subsystem {
+public class GripArm extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  Servo claw = new Servo(OI.CLAW_SERVO);
-
-  public void open() {
-    claw.set(1.0);
-  }
-
-  public void close() {
-    claw.set(0.0);
-  }
-
-  public void stop(){
-    claw.stopMotor();
-  //  claw.set(claw.get());
-    //TODO 
-  }
 
   @Override
   public void initDefaultCommand() {

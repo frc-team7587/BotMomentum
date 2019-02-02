@@ -23,17 +23,18 @@ public class TankDriveWithGamepad extends Command {
   //private int stickPort = OI.LEFT_JOY;
   OI stickPort = new OI();
   Joystick stick = stickPort.getLeftJoystick();
+  Joystick pad = stickPort.getGamepad();
 
   public TankDriveWithGamepad() {
     //stick = new Joystick(stickPort);
     requires(Robot.m_driveTrain);
+    
   }
   //arcade drive with joystick
   @Override
   protected void execute() {
     Robot.m_driveTrain.drive(((-0.5 * stick.getThrottle()) + 1.5) * stick.getY(),
                              0.5*stick.getTwist());
-
   }
 
 

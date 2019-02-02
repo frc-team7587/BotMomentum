@@ -24,8 +24,8 @@ public class OI {
   public static int CLAW_SERVO = 9;
 
   // input devices
-  private final Joystick m_leftJoy = new Joystick(LEFT_JOY);
-  private final Joystick m_rightJoy = new Joystick(RIGHT_JOY);
+  private final Joystick m_leftJoy = new Joystick(LEFT_JOY); //logitech joystick
+  private final Joystick m_rightJoy = new Joystick(RIGHT_JOY); //gamepad
   private final Joystick m_gamePad = new Joystick(CLAW_SERVO);
 
   //Buttons
