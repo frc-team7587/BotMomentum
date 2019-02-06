@@ -14,6 +14,8 @@ import frc.team7587.robot.Robot;
 public class Autonomous extends Command {
 
   private Timer timer = new Timer();
+  private int t1 = 10;
+  private int t2 = 20;
 
   public Autonomous() {
     requires(Robot.m_driveTrain);
@@ -31,19 +33,21 @@ public class Autonomous extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (timer.get() < 2) {
-      //Robot.m_driveTrain.drive(0.25, 0);
-    } else {
-      //Robot.m_driveTrain.drive(0, 0);
-      
-    }
+    // if (timer.get() < t1) {
+    //   Robot.m_driveTrain.drive(0.75, 0);
+    // } else if (timer.get()>=t1 && timer.get()< t2)  {
+    //   Robot.m_driveTrain.drive(-0.75, 0);
+    // } else {
+    //   Robot.m_driveTrain.drive(0,0);
+    // }
+    Robot.m_driveTrain.drive(0.5,0);
 
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return timer.get() > 2;
+    return false;
   }
 
   // Called once after isFinished returns true

@@ -19,35 +19,32 @@ import frc.team7587.robot.Robot;
  */
 public class TankDriveWithGamepad extends Command {
 
-  //private Joystick stick;
-  //private int stickPort = OI.LEFT_JOY;
-  OI stickPort = new OI();
-  Joystick stick = stickPort.getLeftJoystick();
-  Joystick pad = stickPort.getGamepad();
+  // private Joystick stick;
+  // private int oi = OI.LEFT_JOY;
+  Joystick stick = Robot.m_oi.getLogiJoy();
+  Joystick pad = Robot.m_oi.getPad();
 
   public TankDriveWithGamepad() {
-    //stick = new Joystick(stickPort);
+    // stick = new Joystick(oi);
     requires(Robot.m_driveTrain);
-    
-  }
-  //arcade drive with joystick
-  @Override
-  protected void execute() {
-    Robot.m_driveTrain.drive(((-0.5 * stick.getThrottle()) + 1.5) * stick.getY(),
-                             0.5*stick.getTwist());
+
   }
 
+  // arcade drive with joystick
+  @Override
+  protected void execute() {
+    // Robot.m_driveTrain.drive(((-0.5 * stick.getThrottle()) + 1.5) * stick.getY(),
+    // 0.5 * stick.getTwist());
+    Robot.m_driveTrain.drive(-stick.getThrottle() * stick.getY(), 0.5 * stick.getTwist());
+  }
 
   @Override
   protected boolean isFinished() {
     return false; // Runs until interrupted
   }
-  
+
   /*
-  @Override
-  protected void end() {
-    Robot.m_driveTrain.drive(0, 0);
-  }
-  */
+   * @Override protected void end() { Robot.m_driveTrain.drive(0, 0); }
+   */
 
 }

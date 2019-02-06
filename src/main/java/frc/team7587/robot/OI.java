@@ -6,14 +6,21 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team7587.robot.commands.CloseClaw;
+import frc.team7587.robot.commands.RampUp;
 import frc.team7587.robot.commands.OpenClaw;
+import frc.team7587.robot.commands.RampDown;
 
 public class OI {
+
+  //array of Gamepad Buttons
+  
+  JoystickButton[] ouch = new JoystickButton[1];
+
 
   // Constants for joysticks
   public static int LEFT_JOY = 0;
   public static int RIGHT_JOY = 1;
-  public static int GAME_PAD = 0;   // logitech F310
+  public static int GAME_PAD = 1; // logitech F310
   public static int GAMEPAD_RIGHT_STICK_PORT = 5;
 
   // Constants for motors
@@ -24,47 +31,51 @@ public class OI {
   public static int CLAW_SERVO = 9;
 
   // input devices
-  private final Joystick m_leftJoy = new Joystick(LEFT_JOY); //logitech joystick
-  private final Joystick m_rightJoy = new Joystick(RIGHT_JOY); //gamepad
-  private final Joystick m_gamePad = new Joystick(CLAW_SERVO);
+  private final Joystick LogiJoy = new Joystick(LEFT_JOY); // logitech joystick
+  private final Joystick gamePad = new Joystick(RIGHT_JOY); // gamepad
+  // private final Joystick m_gamePad = new Joystick(CLAW_SERVO);
 
-  //Buttons
-  public static int OPEN_BUTTON = 1;
-  public static int CLOSE_BUTTON = 4;
-  private final Button padA = new JoystickButton(m_rightJoy, OPEN_BUTTON);
-  private final Button padY = new JoystickButton(m_rightJoy, CLOSE_BUTTON);
-
-
+  // Buttons
+  //lionel big nerd
+  
+  public static int CLOSE_BUTTON = 1;
+  public static int RAMPDOWN_BUTTON = 2;
+  public static int OPEN_BUTTON = 3;
+  public static int RAMPUP_BUTTON = 4;
+  
+  private final Button padC_O = new JoystickButton(gamePad, OPEN_BUTTON);
+  private final Button padC_C = new JoystickButton(gamePad, CLOSE_BUTTON);
+  private final Button padR_Up = new JoystickButton(gamePad, RAMPUP_BUTTON);
+  private final Button padR_Down = new JoystickButton(gamePad, RAMPDOWN_BUTTON);
 
   public OI() {
     
-    //padY.whenReleased(new OpenClaw(1));
-    //padY.whileHeld(new CloseClaw());
-    
-    padY.whenPressed(new OpenClaw(4));
-    padA.whenPressed(new CloseClaw(.5));
+    // padY.whenReleased(new OpenClaw(1));
+    // padY.whileHeld(new CloseClaw());
 
+    padC_O.whenPressed(new OpenClaw(1)); //X
+    padC_C.whenPressed(new CloseClaw(1)); //A
+    padR_Up.whenPressed(new RampUp(1)); //Y
+    padR_Down.whenPressed(new RampDown(1)); //B
     // padZ.whenPress(new CloseClaw(3))
 
   }
 
-  //public Button getPadA() {
-  //  return padA;
-  //}
+  // public Button getPadA() {
+  // return padA;
+  // }
 
-
-  public Joystick getLeftJoystick() {
-    return m_leftJoy;
+  public Joystick getLogiJoy() {
+    return LogiJoy;
   }
 
-  public Joystick getRightJoystick(){
-    return m_rightJoy;
+  public Joystick getPad() {
+    return gamePad;
   }
 
-  public Joystick getGamepad(){
-    return m_gamePad;
-  }
-  
+  // public Joystick getGamepad() {
+  //   return m_gamePad;
+  // }
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

@@ -27,11 +27,10 @@ public class OpenClaw extends TimedCommand {
   public OpenClaw(double timeout) {
     super(timeout);
     this.timeout = timeout;
-    
-    
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires(Robot.m_claw);
+    // requires(Robot.m_claw);
   }
 
   // Called just before this Command runs the first time
@@ -47,14 +46,14 @@ public class OpenClaw extends TimedCommand {
   // @Override
   // protected void execute() {
 
-  //   Robot.m_claw.open();
+  // Robot.m_claw.open();
 
   // }
 
   // Make this return true when this Command no longer needs to run execute()
   // @Override
   // protected boolean isFinished() {
-  //   return timer.get() > this.timeout;
+  // return timer.get() > this.timeout;
   // }
 
   // Called once after isFinished returns true
