@@ -38,7 +38,6 @@ public class RampUp extends Command {
     ouch = Robot.ramp.getUpDigitInput().get();
     if (timer.get()>5)
     {
-      System.out.println("timer is past");
       ouch = true;
     }
     // System.out.println("AHHHHHH " + ouch);

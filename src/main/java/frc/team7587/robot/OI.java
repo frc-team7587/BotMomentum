@@ -1,5 +1,8 @@
 package frc.team7587.robot;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -34,28 +37,31 @@ public class OI {
   private final Joystick gamePad = new Joystick(RIGHT_JOY); // gamepad
   // private final Joystick m_gamePad = new Joystick(CLAW_SERVO);
 
-  // Buttons
-  // lionel big nerd
+  // Buttons and CommandMap
+  private HashMap<String, Integer> cm;
 
-  public static int CLOSE_BUTTON = 1;
-  public static int RAMPDOWN_BUTTON = 2;
-  public static int OPEN_BUTTON = 3;
-  public static int RAMPUP_BUTTON = 4;
-
-  private final Button padC_O = new JoystickButton(gamePad, OPEN_BUTTON);
-  private final Button padC_C = new JoystickButton(gamePad, CLOSE_BUTTON);
-  private final Button padR_Up = new JoystickButton(gamePad, RAMPUP_BUTTON);
-  private final Button padR_Down = new JoystickButton(gamePad, RAMPDOWN_BUTTON);
+  private final Button padClaw_Open;
+  private final Button padClaw_Close;
+  private final Button padRamp_Up;
+  private final Button padRamp_Down;
 
   public OI() {
+    String[] gamePadButtons = {"A", "B", "X", "Y"};
+    int[] gamePadValues = {1, 2, 3, 4};
+    cm = new CommandMap(gamePadButtons, gamePadValues);
+
+    padClaw_Open = new JoystickButton(gamePad, cm.get("X"));
+    padClaw_Close = new JoystickButton(gamePad, cm.get("A"));
+    padRamp_Up = new JoystickButton(gamePad, cm.get("Y"));
+    padRamp_Down = new JoystickButton(gamePad, cm.get("B"));
 
     // padY.whenReleased(new OpenClaw(1));
     // padY.whileHeld(new CloseClaw());
 
-    padC_O.whenPressed(new OpenClaw(1)); // X
-    padC_C.whenPressed(new CloseClaw(1)); // A
-    padR_Up.whenPressed(new RampUp()); // Y
-    padR_Down.whenPressed(new RampDown()); // B
+    padClaw_Open.whenPressed(new OpenClaw(1)); // X
+    padClaw_Close.whenPressed(new CloseClaw(1)); // A
+    padRamp_Up.whenPressed(new RampUp()); // Y
+    padRamp_Down.whenPressed(new RampDown()); // B
     // padZ.whenPress(new CloseClaw(3))
 
   }
