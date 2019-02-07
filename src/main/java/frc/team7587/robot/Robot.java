@@ -24,7 +24,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi = new OI();
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Claw m_claw = new Claw();
-  public static Ramp arm = new Ramp();
+  public static Ramp ramp = new Ramp();
   // Timer timer = new Timer();
 
   private CameraServer Camera;

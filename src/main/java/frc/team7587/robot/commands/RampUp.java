@@ -7,41 +7,56 @@
 
 package frc.team7587.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.TimedCommand;
 import frc.team7587.robot.Robot;
 import frc.team7587.robot.subsystems.DriveTrain;
 
-public class RampUp extends TimedCommand {
-  public RampUp(double timeout) {
+public class RampUp extends Command {
+  private boolean ouch;
+  private Timer timer = new Timer();
+  public RampUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    super(timeout);
+    
+  
+    // super(timeout);
     // requires(Robot.arm);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.arm.drive();
+    timer.reset();
+    timer.start();
+    Robot.ramp.rampUp();
   }
 
   // Called repeatedly when this Command is scheduled to run
   // @Override
-  // protected void execute() {
-
-  // }
+  protected void execute() {
+    ouch = Robot.ramp.getUpDigitInput().get();
+    if (timer.get()>5)
+    {
+      System.out.println("timer is past");
+      ouch = true;
+    }
+    // System.out.println("AHHHHHH " + ouch);
+    // if (ouch) {
+    //   Robot.ramp.stop();
+    // }
+  }
 
   // Make this return true when this Command no longer needs to run execute()
-  // @Override
-  // protected boolean isFinished() {
-  // return false;
-  // }
+  @Override
+  protected boolean isFinished() {
+    return ouch;
+  }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.arm.stop();
+    Robot.ramp.stop();
   }
 
   // Called when another command which requires one or more of the same

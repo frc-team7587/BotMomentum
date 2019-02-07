@@ -12,15 +12,14 @@ import frc.team7587.robot.commands.RampDown;
 
 public class OI {
 
-  //array of Gamepad Buttons
-  
-  JoystickButton[] ouch = new JoystickButton[1];
+  // array of Gamepad Buttons
 
+  JoystickButton[] ouch = new JoystickButton[1];
 
   // Constants for joysticks
   public static int LEFT_JOY = 0;
   public static int RIGHT_JOY = 1;
-  public static int GAME_PAD = 1; // logitech F310
+  // public static int GAME_PAD = 1; // logitech F310
   public static int GAMEPAD_RIGHT_STICK_PORT = 5;
 
   // Constants for motors
@@ -36,27 +35,27 @@ public class OI {
   // private final Joystick m_gamePad = new Joystick(CLAW_SERVO);
 
   // Buttons
-  //lionel big nerd
-  
+  // lionel big nerd
+
   public static int CLOSE_BUTTON = 1;
   public static int RAMPDOWN_BUTTON = 2;
   public static int OPEN_BUTTON = 3;
   public static int RAMPUP_BUTTON = 4;
-  
+
   private final Button padC_O = new JoystickButton(gamePad, OPEN_BUTTON);
   private final Button padC_C = new JoystickButton(gamePad, CLOSE_BUTTON);
   private final Button padR_Up = new JoystickButton(gamePad, RAMPUP_BUTTON);
   private final Button padR_Down = new JoystickButton(gamePad, RAMPDOWN_BUTTON);
 
   public OI() {
-    
+
     // padY.whenReleased(new OpenClaw(1));
     // padY.whileHeld(new CloseClaw());
 
-    padC_O.whenPressed(new OpenClaw(1)); //X
-    padC_C.whenPressed(new CloseClaw(1)); //A
-    padR_Up.whenPressed(new RampUp(1)); //Y
-    padR_Down.whenPressed(new RampDown(1)); //B
+    padC_O.whenPressed(new OpenClaw(1)); // X
+    padC_C.whenPressed(new CloseClaw(1)); // A
+    padR_Up.whenPressed(new RampUp()); // Y
+    padR_Down.whenPressed(new RampDown()); // B
     // padZ.whenPress(new CloseClaw(3))
 
   }
@@ -74,7 +73,7 @@ public class OI {
   }
 
   // public Joystick getGamepad() {
-  //   return m_gamePad;
+  // return m_gamePad;
   // }
 
   //// CREATING BUTTONS

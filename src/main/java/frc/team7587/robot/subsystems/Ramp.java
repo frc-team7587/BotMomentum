@@ -8,6 +8,7 @@
 package frc.team7587.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DMC60;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team7587.robot.OI;
@@ -16,7 +17,9 @@ import frc.team7587.robot.OI;
  * Add your docs here.
  */
 public class Ramp extends Subsystem {
-  private final SpeedController armMotor = new DMC60(OI.TEST_MOTOR);
+  private final SpeedController rampMotor = new DMC60(OI.TEST_MOTOR);
+  DigitalInput stopUpSwitch = new DigitalInput(9);
+  DigitalInput stopDownSwitch = new DigitalInput(8);
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -26,15 +29,23 @@ public class Ramp extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void drive() {
-    armMotor.set(0.2);
+  public DigitalInput getUpDigitInput(){
+    return stopUpSwitch;
   }
 
-  public void reverse(){
-    armMotor.set(-0.2);
+  public DigitalInput getDownDigitInput(){
+    return stopDownSwitch;
   }
 
+  public void rampUp() {
+    rampMotor.set(0.2);
+  }
+
+  public void rampDown(){
+    rampMotor.set(-0.2);
+  }
+  
   public void stop() {
-    armMotor.stopMotor();
+    rampMotor.set(0);
   }
 }
