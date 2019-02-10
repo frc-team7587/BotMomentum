@@ -12,39 +12,37 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team7587.robot.OI;
+import frc.team7587.robot.commands.RampHold;
 
 /**
  * Add your docs here.
  */
 public class Ramp extends Subsystem {
-  private final SpeedController rampMotor = new DMC60(OI.TEST_MOTOR);
-  DigitalInput stopUpSwitch = new DigitalInput(9);
-  DigitalInput stopDownSwitch = new DigitalInput(8);
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  private final SpeedController rampMotor = new DMC60(OI.RAMP_MOTOR);
+  DigitalInput stopUpSwitch = new DigitalInput(OI.STOP_UP_SWITCH);
+  DigitalInput stopDownSwitch = new DigitalInput(OI.STOP_DOWN_SWITCH);
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new RampHold());
   }
 
-  public DigitalInput getUpDigitInput(){
-    return stopUpSwitch;
+  public boolean upLimitReached() {
+    return stopUpSwitch.get();
   }
 
-  public DigitalInput getDownDigitInput(){
-    return stopDownSwitch;
+  public boolean downLimitReached() {
+    return stopDownSwitch.get();
   }
 
   public void rampUp() {
     rampMotor.set(0.2);
   }
 
-  public void rampDown(){
+  public void rampDown() {
     rampMotor.set(-0.2);
   }
-  
+
   public void stop() {
     rampMotor.set(0);
   }

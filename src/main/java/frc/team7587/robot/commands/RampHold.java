@@ -7,29 +7,36 @@
 
 package frc.team7587.robot.commands;
 
-import edu.wpi.first.wpilibj.command.TimedCommand;
+import edu.wpi.first.wpilibj.command.Command;
 import frc.team7587.robot.Robot;
 
-public class CloseClaw extends TimedCommand {
+public class RampHold extends Command {
+  public RampHold() {
+    requires(Robot.m_ramp);
+  }
 
-  public CloseClaw(double timeout) {
-    super(timeout);
-    requires(Robot.m_claw);
+  // Called just before this Command runs the first time
+  @Override
+  protected void initialize() {
+    Robot.m_ramp.stop();
   }
 
   @Override
-  protected void initialize() {
-    Robot.m_claw.close();
+  protected void execute() {
+  }
+
+  @Override
+  protected boolean isFinished() {
+    return false;
   }
 
   @Override
   protected void end() {
-    Robot.m_claw.stop();
+  
   }
 
   @Override
-  protected void interrupted(){
+  protected void interrupted() {
     end();
   }
-
 }

@@ -17,70 +17,69 @@ public class OI {
 
   // array of Gamepad Buttons
 
-  JoystickButton[] ouch = new JoystickButton[1];
-
   // Constants for joysticks
-  public static int LEFT_JOY = 0;
-  public static int RIGHT_JOY = 1;
-  // public static int GAME_PAD = 1; // logitech F310
-  public static int GAMEPAD_RIGHT_STICK_PORT = 5;
+  public static final int LOGI_JOY_PORT = 0;
+  public static final int GAMEPAD_PORT = 1;
+  public static final int GAMEPAD_RIGHT_STICK_PORT = 5;
 
-  // Constants for motors
-  public static int LEFT_MOTOR = 0;
-  public static int RIGHT_MOTOR = 1;
-  public static int TEST_MOTOR = 2;
+  // Constants for motors aka PWM ports
+  public static final int LEFT_MOTOR = 0;
+  public static final int RIGHT_MOTOR = 1;
+  public static final int RAMP_MOTOR = 2;
+  public static final int CLAW_SERVO = 9;
 
-  public static int CLAW_SERVO = 9;
+  // Input devices
+  private final Joystick logiJoy = new Joystick(LOGI_JOY_PORT); // logitech joystick
+  private final Joystick gamePad = new Joystick(GAMEPAD_PORT); // gamepad
 
-  // input devices
-  private final Joystick LogiJoy = new Joystick(LEFT_JOY); // logitech joystick
-  private final Joystick gamePad = new Joystick(RIGHT_JOY); // gamepad
-  // private final Joystick m_gamePad = new Joystick(CLAW_SERVO);
+  // Constants for DIO ports
+  public static final int STOP_UP_SWITCH = 9;
+  public static final int STOP_DOWN_SWITCH = 8;
 
-  // Buttons and CommandMap
-  private HashMap<String, Integer> cm;
+  // Buttons and ButtonMap
+  private Map<String, Integer> buttonMap;
 
-  private final Button padClaw_Open;
-  private final Button padClaw_Close;
-  private final Button padRamp_Up;
-  private final Button padRamp_Down;
+  private final Button btnClawOpen;
+  private final Button btnClawClose;
+  private final Button btnRampUp;
+  private final Button btnRampDown;
+
+  // Constants
+  public static final int CLAW_TIMEOUT = 1;
 
   public OI() {
-    String[] gamePadButtons = {"A", "B", "X", "Y"};
-    int[] gamePadValues = {1, 2, 3, 4};
-    cm = new CommandMap(gamePadButtons, gamePadValues);
+    
+    String[] gamePadButtons = { "A", "B", "X", "Y" };
+    int[] gamePadValues     = {  1,   2,   3,   4 };
+    buttonMap = getButtonMap(gamePadButtons, gamePadValues);
 
-    padClaw_Open = new JoystickButton(gamePad, cm.get("X"));
-    padClaw_Close = new JoystickButton(gamePad, cm.get("A"));
-    padRamp_Up = new JoystickButton(gamePad, cm.get("Y"));
-    padRamp_Down = new JoystickButton(gamePad, cm.get("B"));
+    btnClawOpen = new JoystickButton(gamePad, buttonMap.get("X"));
+    btnClawClose = new JoystickButton(gamePad, buttonMap.get("A"));
+    btnRampUp = new JoystickButton(gamePad, buttonMap.get("Y"));
+    btnRampDown = new JoystickButton(gamePad, buttonMap.get("B"));
 
-    // padY.whenReleased(new OpenClaw(1));
-    // padY.whileHeld(new CloseClaw());
-
-    padClaw_Open.whenPressed(new OpenClaw(1)); // X
-    padClaw_Close.whenPressed(new CloseClaw(1)); // A
-    padRamp_Up.whenPressed(new RampUp()); // Y
-    padRamp_Down.whenPressed(new RampDown()); // B
-    // padZ.whenPress(new CloseClaw(3))
+    btnClawOpen.whenPressed(new OpenClaw(CLAW_TIMEOUT));
+    btnClawClose.whenPressed(new CloseClaw(CLAW_TIMEOUT));
+    btnRampUp.whenPressed(new RampUp());
+    btnRampDown.whenPressed(new RampDown());
 
   }
 
-  // public Button getPadA() {
-  // return padA;
-  // }
-
   public Joystick getLogiJoy() {
-    return LogiJoy;
+    return logiJoy;
   }
 
   public Joystick getPad() {
     return gamePad;
   }
 
-  // public Joystick getGamepad() {
-  // return m_gamePad;
-  // }
+  private Map<String, Integer> getButtonMap(String[] buttons, int[] values) {
+    Map<String, Integer> map = new HashMap<>();
+    for (int i = 0; i < buttons.length && i < values.length; i++) {
+      map.put(buttons[i], values[i]);
+    }
+    return map;
+  }
 
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

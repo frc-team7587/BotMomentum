@@ -9,12 +9,8 @@ package frc.team7587.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.DMC60;
 import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Timer;
 import frc.team7587.robot.OI;
-import frc.team7587.robot.Robot;
 
 /**
  * Add your docs here.
@@ -39,14 +35,11 @@ public class Claw extends Subsystem {
 
   public void stop() {
     claw.stopMotor();
-    // claw.set(claw.get());
-    // TODO
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+
   }
 
   public void log() {
