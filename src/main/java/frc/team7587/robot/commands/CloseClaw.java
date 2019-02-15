@@ -14,7 +14,7 @@ public class CloseClaw extends TimedCommand {
 
   public CloseClaw(double timeout) {
     super(timeout);
-    requires(Robot.m_claw);
+    //requires(Robot.m_claw);
   }
 
   @Override

@@ -1,13 +1,14 @@
+
 package frc.team7587.robot;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
+import frc.team7587.robot.commands.ArmIn;
+import frc.team7587.robot.commands.ArmOut;
 import frc.team7587.robot.commands.CloseClaw;
 import frc.team7587.robot.commands.RampUp;
 import frc.team7587.robot.commands.OpenClaw;
@@ -26,6 +27,7 @@ public class OI {
   public static final int LEFT_MOTOR = 0;
   public static final int RIGHT_MOTOR = 1;
   public static final int RAMP_MOTOR = 2;
+  public static final int ARM_MOTOR = 3;
   public static final int CLAW_SERVO = 9;
 
   // Input devices
@@ -35,6 +37,8 @@ public class OI {
   // Constants for DIO ports
   public static final int STOP_UP_SWITCH = 9;
   public static final int STOP_DOWN_SWITCH = 8;
+  public static final int STOP_OUT_SWITCH = 7;
+  public static final int STOP_IN_SWITCH = 6;
 
   // Buttons and ButtonMap
   private Map<String, Integer> buttonMap;
@@ -43,6 +47,8 @@ public class OI {
   private final Button btnClawClose;
   private final Button btnRampUp;
   private final Button btnRampDown;
+  private final Button btnArmOut;
+  private final Button btnArmIn;
 
   // Constants
   public static final int CLAW_TIMEOUT = 1;
@@ -57,12 +63,18 @@ public class OI {
     btnClawClose = new JoystickButton(gamePad, buttonMap.get("A"));
     btnRampUp = new JoystickButton(gamePad, buttonMap.get("Y"));
     btnRampDown = new JoystickButton(gamePad, buttonMap.get("B"));
+    // btnArmOut = new JoystickButton(gamePad, gamePad.getPOV(0));
+    // btnArmIn = new JoystickButton(gamePad, gamePad.getPOV(4));
+    btnArmOut = new JoystickButton(gamePad, 6);
+    btnArmIn = new JoystickButton(gamePad, 5);
 
     btnClawOpen.whenPressed(new OpenClaw(CLAW_TIMEOUT));
     btnClawClose.whenPressed(new CloseClaw(CLAW_TIMEOUT));
     btnRampUp.whenPressed(new RampUp());
     btnRampDown.whenPressed(new RampDown());
-
+    btnArmOut.whenPressed(new ArmOut()); //left bumper
+    btnArmIn.whenPressed(new ArmIn()); //right bumper
+    
   }
 
   public Joystick getLogiJoy() {

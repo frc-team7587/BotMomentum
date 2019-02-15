@@ -9,44 +9,52 @@ package frc.team7587.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+//import edu.wpi.first.wpilibj.command.TimedCommand;
 import frc.team7587.robot.Robot;
 
-public class RampDown extends Command {
-  private static final int RUN_TIMEOUT = 5;
+/**
+ * Add your docs here.
+ */
+public class ArmOut extends Command {
+  /**
+   * Add your docs here.
+   */
   private Timer timer = new Timer();
 
-  public RampDown() {
-    // requires(Robot.m_ramp);
+  public ArmOut() {
+
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
+  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     timer.reset();
     timer.start();
-
+    Robot.m_arm.armOut();
   }
 
+  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (timer.get() < 1.5) {
-      Robot.m_ramp.rampDown();
-    } else {
-      Robot.m_ramp.stop();
-    }
+
   }
 
   @Override
   protected boolean isFinished() {
-    // return Robot.m_ramp.downLimitReached() ? true : timer.get() > RUN_TIMEOUT;
-    return timer.get() > 4;
+    return Robot.m_arm.getOutLimit() ? true : timer.get() > 8.5;
   }
 
+  // Called once after timeout
   @Override
   protected void end() {
-    Robot.m_ramp.stop();
+    Robot.m_arm.stop();
     timer.stop();
   }
 
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
   @Override
   protected void interrupted() {
     end();

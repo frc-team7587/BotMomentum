@@ -8,10 +8,7 @@
 package frc.team7587.robot.commands;
 
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team7587.robot.OI;
 import frc.team7587.robot.Robot;
 
 /**

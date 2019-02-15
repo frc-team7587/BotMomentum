@@ -26,7 +26,7 @@ public class Claw extends Subsystem {
   }
 
   public void open() {
-    claw.set(2.0);
+    claw.set(1.0);
   }
 
   public void close() {

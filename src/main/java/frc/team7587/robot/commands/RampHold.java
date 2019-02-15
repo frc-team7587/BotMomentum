@@ -12,7 +12,7 @@ import frc.team7587.robot.Robot;
 
 public class RampHold extends Command {
   public RampHold() {
-    requires(Robot.m_ramp);
+    //requires(Robot.m_ramp);
   }
 
   // Called just before this Command runs the first time

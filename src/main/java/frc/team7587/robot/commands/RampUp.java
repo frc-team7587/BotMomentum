@@ -16,27 +16,36 @@ public class RampUp extends Command {
   private Timer timer = new Timer();
 
   public RampUp() {
-    requires(Robot.m_ramp);
+    // requires(Robot.m_ramp);
   }
 
   @Override
   protected void initialize() {
     timer.reset();
     timer.start();
-    Robot.m_ramp.rampUp();
+
   }
 
   protected void execute() {
+    System.out.println("reeee out");
+    if (timer.get() < 1) {
+      Robot.m_ramp.rampUp();
+    } else {
+      Robot.m_ramp.stop();
+    }
+
   }
 
   @Override
   protected boolean isFinished() {
-    return Robot.m_ramp.upLimitReached() ? true : timer.get() > RUN_TIMEOUT;
+    // return Robot.m_ramp.upLimitReached() ? true : timer.get() > RUN_TIMEOUT;
+    return false;
   }
 
   @Override
   protected void end() {
     Robot.m_ramp.stop();
+    timer.stop();
   }
 
   @Override

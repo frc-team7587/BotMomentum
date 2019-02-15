@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team7587.robot.subsystems.DriveTrain;
 import frc.team7587.robot.subsystems.Ramp;
+import frc.team7587.robot.subsystems.ArmMotor;
 import frc.team7587.robot.subsystems.Claw;
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -15,6 +16,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Claw m_claw = new Claw();
   public static Ramp m_ramp = new Ramp();
+  public static ArmMotor m_arm = new ArmMotor();
 
   private CameraServer cameraFront = CameraServer.getInstance();
   private CameraServer cameraBack = CameraServer.getInstance();
