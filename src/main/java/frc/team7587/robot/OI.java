@@ -7,6 +7,7 @@ import java.util.Map;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team7587.robot.commands.Arm;
 import frc.team7587.robot.commands.ArmIn;
 import frc.team7587.robot.commands.ArmOut;
 import frc.team7587.robot.commands.CloseClaw;
@@ -47,8 +48,9 @@ public class OI {
   private final Button btnClawClose;
   private final Button btnRampUp;
   private final Button btnRampDown;
-  private final Button btnArmOut;
-  private final Button btnArmIn;
+  // private final Button btnArmOut;
+  // private final Button btnArmIn;
+  private final Button btnArm;
 
   // Constants
   public static final int CLAW_TIMEOUT = 1;
@@ -64,16 +66,18 @@ public class OI {
     btnRampUp = new JoystickButton(gamePad, buttonMap.get("Y"));
     btnRampDown = new JoystickButton(gamePad, buttonMap.get("B"));
     // btnArmOut = new JoystickButton(gamePad, gamePad.getPOV(0));
-    // btnArmIn = new JoystickButton(gamePad, gamePad.getPOV(4));
-    btnArmOut = new JoystickButton(gamePad, 6);
-    btnArmIn = new JoystickButton(gamePad, 5);
+    // btnArmIn = new JoystickButton(gamePad, gamePad.getPOV(1));
+    btnArm = new JoystickButton(gamePad, 0);
+    // btnArmOut = new JoystickButton(gamePad, 6);
+    // btnArmIn = new JoystickButton(gamePad, 5);
 
     btnClawOpen.whenPressed(new OpenClaw(CLAW_TIMEOUT));
     btnClawClose.whenPressed(new CloseClaw(CLAW_TIMEOUT));
     btnRampUp.whenPressed(new RampUp());
     btnRampDown.whenPressed(new RampDown());
-    btnArmOut.whenPressed(new ArmOut()); //left bumper
-    btnArmIn.whenPressed(new ArmIn()); //right bumper
+    // btnArmOut.whenPressed(new ArmOut()); //left bumper
+    // btnArmIn.whenPressed(new ArmIn()); //right bumper
+    btnArm.whenPressed(new Arm());
     
   }
 

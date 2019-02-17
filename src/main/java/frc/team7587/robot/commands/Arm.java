@@ -7,53 +7,60 @@
 
 package frc.team7587.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.team7587.robot.OI;
 import frc.team7587.robot.Robot;
 
 /**
  * Add your docs here.
  */
-public class ArmIn extends Command {
+public class Arm extends CommandGroup {
   /**
    * Add your docs here.
    */
-  private Timer timer = new Timer();
-  public ArmIn() {
-    
+
+  Joystick armCross = Robot.m_oi.getPad();
+
+  public Arm() {
+
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    timer.reset();
-    timer.start();
-    Robot.m_arm.armIn();
+    if (armCross.getPOV(0) == 0) {
+      addSequential(new ArmOut());
+    } else if (armCross.getPOV(0) == 180) {
+      addSequential(new CloseClaw(OI.CLAW_TIMEOUT));
+      addSequential(new ArmIn());
+    }
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  }
-
-  @Override
-  protected boolean isFinished() {
-    return Robot.m_arm.getInLimit() ? true : timer.get() > 8.5;
+    if (armCross.getPOV(0) == 0) {
+      addSequential(new ArmOut());
+    } else if (armCross.getPOV(0) == 180) {
+      addSequential(new CloseClaw(OI.CLAW_TIMEOUT));
+      addSequential(new ArmIn());
+    }
   }
 
   // Called once after timeout
   @Override
   protected void end() {
-    Robot.m_arm.stop();
-    timer.stop();
+
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
