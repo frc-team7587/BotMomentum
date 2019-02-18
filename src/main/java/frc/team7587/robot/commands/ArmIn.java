@@ -40,7 +40,8 @@ public class ArmIn extends Command {
 
   @Override
   protected boolean isFinished() {
-    return Robot.m_arm.getInLimit() ? true : timer.get() > 8.5;
+    // return Robot.m_arm.getInLimit() ? true : timer.get() > 1;
+    return timer.get() > 1;
   }
 
   // Called once after timeout

@@ -42,7 +42,8 @@ public class ArmOut extends Command {
 
   @Override
   protected boolean isFinished() {
-    return Robot.m_arm.getOutLimit() ? true : timer.get() > 8.5;
+    // return Robot.m_arm.getOutLimit() ? true : timer.get() > 1;
+    return timer.get() > 1;
   }
 
   // Called once after timeout

@@ -35,11 +35,15 @@ public class Ramp extends Subsystem {
 
   //positive counterclockwise, negative clockwise
   public void rampUp() {
-    rampMotor.set(-0.3);
+    rampMotor.set(-0.4);
   }
 
-  public void rampDown() {
-    rampMotor.set(-0.1);
+  public void rampDown(double speed) {
+    rampMotor.set(speed);
+  }
+
+  public double rampGet(){
+    return rampMotor.get();
   }
 
   public void stop() {

@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team7587.robot.Robot;
 
 public class RampUp extends Command {
-  private static final int RUN_TIMEOUT = 5;
+  private static final int RUN_TIMEOUT = 2;
   private Timer timer = new Timer();
 
   public RampUp() {
@@ -27,19 +27,13 @@ public class RampUp extends Command {
   }
 
   protected void execute() {
-    System.out.println("reeee out");
-    if (timer.get() < 1) {
-      Robot.m_ramp.rampUp();
-    } else {
-      Robot.m_ramp.stop();
-    }
-
+    Robot.m_ramp.rampUp();
   }
 
   @Override
   protected boolean isFinished() {
-    // return Robot.m_ramp.upLimitReached() ? true : timer.get() > RUN_TIMEOUT;
-    return false;
+    return Robot.m_ramp.upLimitReached() ? true : timer.get() > RUN_TIMEOUT;
+    // return false;
   }
 
   @Override
