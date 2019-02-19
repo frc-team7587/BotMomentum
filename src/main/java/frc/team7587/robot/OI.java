@@ -28,7 +28,8 @@ public class OI {
   public static final int LEFT_MOTOR = 0;
   public static final int RIGHT_MOTOR = 1;
   public static final int RAMP_MOTOR = 2;
-  public static final int ARM_MOTOR = 3;
+  public static final int FORWARD_SOLENOID = 1;
+  public static final int REVERSE_SOLENOID = 2;
   public static final int CLAW_SERVO = 9;
 
   // Input devices

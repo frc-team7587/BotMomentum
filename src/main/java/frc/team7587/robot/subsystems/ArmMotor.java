@@ -8,9 +8,8 @@
 package frc.team7587.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PWMVictorSPX;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team7587.robot.OI;
 import frc.team7587.robot.Robot;
@@ -21,7 +20,7 @@ import frc.team7587.robot.Robot;
 public class ArmMotor extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  private final SpeedController armMotor = new PWMVictorSPX(OI.ARM_MOTOR);
+  private final DoubleSolenoid armSolenoid = new DoubleSolenoid(OI.FORWARD_SOLENOID, OI.REVERSE_SOLENOID);
   private final DigitalInput outLimit = new DigitalInput(OI.STOP_OUT_SWITCH);
   private final DigitalInput inLimit = new DigitalInput(OI.STOP_IN_SWITCH);
   private final Joystick stick = Robot.m_oi.getPad();
@@ -45,15 +44,15 @@ public boolean getInLimit(){
 }
 
   public void armOut() {
-    armMotor.set(-0.75);
+    armSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   public void armIn() {
-    armMotor.set(0.75);
+    armSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void stop() {
-    armMotor.set(0);
+    armSolenoid.set(DoubleSolenoid.Value.kOff);
   }
 
   public Joystick getStick(){
