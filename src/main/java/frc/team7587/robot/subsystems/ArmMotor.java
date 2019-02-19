@@ -35,13 +35,13 @@ public class ArmMotor extends Subsystem {
   }
 
   // clockwise out, negative? counterclockwise in, positive
-  public boolean getOutLimit(){
-    return outLimit.get();
-   }
+  // public boolean getOutLimit(){
+  //   return outLimit.get();
+  //  }
 
-public boolean getInLimit(){
-  return inLimit.get();
-}
+// public boolean getInLimit(){
+//   return inLimit.get();
+// }
 
   public void armOut() {
     armSolenoid.set(DoubleSolenoid.Value.kForward);
