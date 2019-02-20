@@ -47,7 +47,6 @@ public class ArmIn extends Command {
   // Called once after timeout
   @Override
   protected void end() {
-    Robot.m_arm.stop();
     timer.stop();
   }
 

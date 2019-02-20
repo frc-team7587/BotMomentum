@@ -1,5 +1,6 @@
 package frc.team7587.robot;
 
+import edu.wpi.first.wpilibj.CAN;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -17,6 +18,7 @@ public class Robot extends TimedRobot {
   public static Claw m_claw = new Claw();
   public static Ramp m_ramp = new Ramp();
   public static ArmMotor m_arm = new ArmMotor();
+  // public static CAN m_can = new CAN(0);
 
   private CameraServer cameraFront = CameraServer.getInstance();
   private CameraServer cameraBack = CameraServer.getInstance();

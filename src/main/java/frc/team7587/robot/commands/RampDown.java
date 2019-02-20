@@ -23,13 +23,12 @@ public class RampDown extends Command {
   protected void initialize() {
     timer.reset();
     timer.start();
-
   }
 
   @Override
   protected void execute() {
     while(timer.get() < INIT_JOLT){
-      Robot.m_ramp.rampDown(0.75);
+      Robot.m_ramp.rampDown(0.85);
     }
     // for (int a = 0; Robot.m_ramp.rampGet() > -0.2; a++){
     //   Robot.m_ramp.rampDown(Robot.m_ramp.rampGet() - (a * -0.05));
