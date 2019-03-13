@@ -50,6 +50,7 @@ public class ArmOut extends Command {
   @Override
   protected void end() {
     timer.stop();
+    Robot.m_arm.stop();
   }
 
   // Called when another command which requires one or more of the same

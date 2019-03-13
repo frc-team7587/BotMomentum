@@ -37,6 +37,7 @@ public class Claw extends Subsystem {
     claw.stopMotor();
   }
 
+
   @Override
   public void initDefaultCommand() {
 
