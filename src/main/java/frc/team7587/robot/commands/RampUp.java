@@ -32,8 +32,7 @@ public class RampUp extends Command {
 
   @Override
   protected boolean isFinished() {
-    return Robot.m_ramp.upLimitReached() ? true : timer.get() > RUN_TIMEOUT;
-    // return false;
+    return !Robot.m_oi.rampUpCheck();
   }
 
   @Override

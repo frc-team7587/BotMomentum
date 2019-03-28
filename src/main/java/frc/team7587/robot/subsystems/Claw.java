@@ -9,7 +9,9 @@ package frc.team7587.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.PWMVictorSPX;
 import frc.team7587.robot.OI;
 
 /**
@@ -19,18 +21,19 @@ public class Claw extends Subsystem {
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  Servo claw = new Servo(OI.CLAW_SERVO);
+  //Servo claw = new Servo(OI.CLAW_SERVO);
+  PWMVictorSPX claw = new PWMVictorSPX(OI.CLAW_SERVO);
 
   public Claw() {
 
   }
 
   public void open() {
-    claw.set(1.0);
+    claw.set(0.5);
   }
 
   public void close() {
-    claw.set(0.0);
+    claw.set(-0.5);
   }
 
   public void stop() {
@@ -44,7 +47,7 @@ public class Claw extends Subsystem {
   }
 
   public void log() {
-    SmartDashboard.putNumber("claw angle:", claw.getAngle());
+    // SmartDashboard.putNumber("claw angle:", claw.getAngle());
     SmartDashboard.putNumber("claw speed:", claw.getSpeed());
 
   }

@@ -14,7 +14,7 @@ public class OpenClaw extends TimedCommand {
 
   public OpenClaw(double timeout) {
     super(timeout);
-    //requires(Robot.m_claw);
+    // requires(Robot.m_claw);
   }
 
   @Override
@@ -28,8 +28,8 @@ public class OpenClaw extends TimedCommand {
   }
 
   @Override
-  protected void interrupted(){
+  protected void interrupted() {
     end();
   }
-  
+
 }
