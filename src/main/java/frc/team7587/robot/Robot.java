@@ -8,6 +8,7 @@ import frc.team7587.robot.subsystems.Ramp;
 import frc.team7587.robot.subsystems.ArmMotor;
 import frc.team7587.robot.subsystems.Claw;
 import edu.wpi.first.cameraserver.CameraServer;
+import frc.team7587.GripPipeline;
 
 public class Robot extends TimedRobot {
 
@@ -17,6 +18,7 @@ public class Robot extends TimedRobot {
   public static Ramp m_ramp = new Ramp();
   public static ArmMotor m_arm = new ArmMotor();
 
+  private GripPipeline grip = new GripPipeline();
   private CameraServer cameraFront = CameraServer.getInstance();
   private CameraServer cameraBack = CameraServer.getInstance();
 
@@ -25,7 +27,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-
+    grip.process(source0);
     cameraFront.startAutomaticCapture();
     cameraBack.startAutomaticCapture();
 
