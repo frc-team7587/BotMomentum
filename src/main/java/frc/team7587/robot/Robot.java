@@ -7,8 +7,12 @@ import frc.team7587.robot.subsystems.DriveTrain;
 import frc.team7587.robot.subsystems.Ramp;
 import frc.team7587.robot.subsystems.ArmMotor;
 import frc.team7587.robot.subsystems.Claw;
+
+import org.opencv.core.Mat;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import frc.team7587.GripPipeline;
+import edu.wpi.first.wpilibj.vision.VisionPipeline;
 
 public class Robot extends TimedRobot {
 
@@ -21,6 +25,7 @@ public class Robot extends TimedRobot {
   private GripPipeline grip = new GripPipeline();
   private CameraServer cameraFront = CameraServer.getInstance();
   private CameraServer cameraBack = CameraServer.getInstance();
+  private Mat source0 = new Mat();
 
   Command m_autoCommand;
   // SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -30,7 +35,8 @@ public class Robot extends TimedRobot {
     grip.process(source0);
     cameraFront.startAutomaticCapture();
     cameraBack.startAutomaticCapture();
-
+    cameraFront.getVideo(cameraFront.startAutomaticCapture());
+    cameraBack.getVideo(cameraBack.startAutomaticCapture());
   }
 
   @Override
