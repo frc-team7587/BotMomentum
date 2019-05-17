@@ -1,18 +1,21 @@
 package frc.team7587.robot;
 
+//essentials?
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+
+//subsystems
 import frc.team7587.robot.subsystems.DriveTrain;
 import frc.team7587.robot.subsystems.Ramp;
-import frc.team7587.robot.subsystems.ArmMotor;
+import frc.team7587.robot.subsystems.ArmPiston;
+import frc.team7587.robot.subsystems.CargoIntake;
 import frc.team7587.robot.subsystems.Claw;
 
+//vision stuffs
 import org.opencv.core.Mat;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import frc.team7587.GripPipeline;
-import edu.wpi.first.wpilibj.vision.VisionPipeline;
 
 public class Robot extends TimedRobot {
 
@@ -20,23 +23,23 @@ public class Robot extends TimedRobot {
   public static DriveTrain m_driveTrain = new DriveTrain();
   public static Claw m_claw = new Claw();
   public static Ramp m_ramp = new Ramp();
-  public static ArmMotor m_arm = new ArmMotor();
+  public static ArmPiston m_arm = new ArmPiston();
+  public static CargoIntake m_intake = new CargoIntake();
 
   private GripPipeline grip = new GripPipeline();
   private CameraServer cameraFront = CameraServer.getInstance();
   private CameraServer cameraBack = CameraServer.getInstance();
-  private Mat source0 = new Mat();
 
   Command m_autoCommand;
   // SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   @Override
   public void robotInit() {
-    grip.process(source0);
+    // grip.process(source0);
     cameraFront.startAutomaticCapture();
-    cameraBack.startAutomaticCapture();
-    cameraFront.getVideo(cameraFront.startAutomaticCapture());
-    cameraBack.getVideo(cameraBack.startAutomaticCapture());
+    cameraBack.getVideo(cameraFront.startAutomaticCapture());
+    cameraBack.addServer("GRIP", 1);
+    cameraBack.getInstance().putVideo("Find blue", 500, 400);
   }
 
   @Override

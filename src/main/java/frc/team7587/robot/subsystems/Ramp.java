@@ -8,7 +8,6 @@
 package frc.team7587.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DMC60;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team7587.robot.OI;

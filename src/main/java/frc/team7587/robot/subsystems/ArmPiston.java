@@ -17,12 +17,12 @@ import frc.team7587.robot.Robot;
 /**
  * Add your docs here.
  */
-public class ArmMotor extends Subsystem {
+public class ArmPiston extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private final DoubleSolenoid armSolenoid = new DoubleSolenoid(OI.FORWARD_SOLENOID, OI.REVERSE_SOLENOID);
-  private final DigitalInput outLimit = new DigitalInput(OI.STOP_OUT_SWITCH);
-  private final DigitalInput inLimit = new DigitalInput(OI.STOP_IN_SWITCH);
+  // private final DigitalInput outLimit = new DigitalInput(OI.STOP_OUT_SWITCH);
+  // private final DigitalInput inLimit = new DigitalInput(OI.STOP_IN_SWITCH);
   private final Joystick stick = Robot.m_oi.getPad();
 
 

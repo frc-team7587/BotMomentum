@@ -5,10 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team7587.robot.commands.ArmIn;
 import frc.team7587.robot.commands.ArmOut;
+import frc.team7587.robot.commands.CargoIn;
+import frc.team7587.robot.commands.CargoOut;
 import frc.team7587.robot.commands.CloseClaw;
 import frc.team7587.robot.commands.RampUp;
 import frc.team7587.robot.commands.OpenClaw;
@@ -21,15 +24,19 @@ public class OI {
   // Constants for joysticks
   public static final int LOGI_JOY_PORT = 0;
   public static final int GAMEPAD_PORT = 1;
-  public static final int GAMEPAD_RIGHT_STICK_PORT = 5;
 
   // Constants for motors aka PWM ports
   public static final int LEFT_MOTOR = 0;
   public static final int RIGHT_MOTOR = 1;
   public static final int RAMP_MOTOR = 2;
+  public static final int INTAKE_MOTOR = 3;
   public static final int FORWARD_SOLENOID = 7;
   public static final int REVERSE_SOLENOID = 6;
   public static final int CLAW_SERVO = 9;
+
+  // Constants for gamepad axes
+  public static final int CARGO_OUTPUT = 3;
+  public static final int CARGO_INPUT = 2;
 
   // Input devices
   private final Joystick logiJoy = new Joystick(LOGI_JOY_PORT); // logitech joystick
@@ -50,6 +57,8 @@ public class OI {
   private final Button btnRampDown;
   private final Button btnArmOut;
   private final Button btnArmIn;
+  private final Button btnCarIn;
+  private final Button btnCarOut;
 
   // Constants
   public static final double CLAW_TIMEOUT = 0.3;
@@ -66,6 +75,8 @@ public class OI {
     btnRampDown = new JoystickButton(gamePad, buttonMap.get("B"));
     btnArmOut = new JoystickButton(gamePad, 5);
     btnArmIn = new JoystickButton(gamePad, 6);
+    btnCarIn = new JoystickButton(logiJoy, 1);
+    btnCarOut = new JoystickButton(logiJoy, 2);
 
     btnClawOpen.whenPressed(new OpenClaw(CLAW_TIMEOUT));
     btnClawClose.whenPressed(new CloseClaw(CLAW_TIMEOUT));
@@ -73,6 +84,9 @@ public class OI {
     btnRampDown.whileHeld(new RampDown());
     btnArmOut.whenPressed(new ArmOut()); // left bumper
     btnArmIn.whenPressed(new ArmIn()); // right bumper
+    btnCarIn.whileHeld(new CargoIn(1, 1));
+    btnCarOut.whileHeld(new CargoOut(1, 1));
+
   }
 
   public Joystick getLogiJoy() {
