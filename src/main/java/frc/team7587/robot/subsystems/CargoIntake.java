@@ -39,7 +39,8 @@ public class CargoIntake extends Subsystem {
     cargo.set(0.5 * speed);
   }
 
-  public void stop(){
+  public void stop() {
+    cargo.set(0);
     cargo.stopMotor();
   }
 }

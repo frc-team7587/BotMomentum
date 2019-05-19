@@ -84,8 +84,8 @@ public class OI {
     btnRampDown.whileHeld(new RampDown());
     btnArmOut.whenPressed(new ArmOut()); // left bumper
     btnArmIn.whenPressed(new ArmIn()); // right bumper
-    btnCarIn.whileHeld(new CargoIn(1, 1));
-    btnCarOut.whileHeld(new CargoOut(1, 1));
+    btnCarIn.whileHeld(new CargoIn(1));
+    btnCarOut.whileHeld(new CargoOut(1));
 
   }
 
@@ -103,6 +103,14 @@ public class OI {
 
   public boolean rampDownCheck() {
     return btnRampDown.get();
+  }
+
+  public boolean cargoInCheck(){
+    return btnCarIn.get();
+  }
+
+  public boolean cargoOutCheck(){
+    return btnCarOut.get();
   }
 
   private Map<String, Integer> getButtonMap(String[] buttons, int[] values) {
