@@ -18,23 +18,22 @@ public class CargoOut extends Command {
    * Add your docs here.
    */
   private double actualSpeed;
-  public CargoOut(double speed) {
+  public CargoOut() {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    actualSpeed = speed;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    
+
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intake.output(actualSpeed);
+    Robot.m_intake.output(1);
   }
 
   // Called once after timeout

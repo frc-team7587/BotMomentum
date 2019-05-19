@@ -84,8 +84,8 @@ public class OI {
     btnRampDown.whileHeld(new RampDown());
     btnArmOut.whenPressed(new ArmOut()); // left bumper
     btnArmIn.whenPressed(new ArmIn()); // right bumper
-    btnCarIn.whileHeld(new CargoIn(1));
-    btnCarOut.whileHeld(new CargoOut(1));
+    btnCarIn.whileHeld(new CargoIn());
+    btnCarOut.whileHeld(new CargoOut());
 
   }
 

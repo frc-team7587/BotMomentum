@@ -16,13 +16,10 @@ public class CargoIn extends Command {
   /**
    * Add your docs here.
    */
-  private double actualSpeed;
-
-  public CargoIn(double speed) {
+  public CargoIn() {
     super();
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    actualSpeed = speed;
   }
 
   // Called just before this Command runs the first time
@@ -34,7 +31,7 @@ public class CargoIn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intake.intake(actualSpeed);
+    Robot.m_intake.intake(1);
   }
 
   // Called once after timeout
