@@ -8,8 +8,11 @@
 package frc.team7587.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 import frc.team7587.robot.OI;
 
 /**
@@ -20,11 +23,16 @@ public class CargoIntake extends Subsystem {
   // here. Call these from Commands.
 
   private SpeedController cargo = new PWMVictorSPX(OI.INTAKE_MOTOR);
+  private Encoder encoder = new Encoder(0, 1, false, EncodingType.k4X);
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    encoder.reset();
+    encoder.setMinRate(4.0);
+    encoder.setMaxPeriod(0.25);
+
   }
 
   public CargoIntake() {
@@ -42,5 +50,13 @@ public class CargoIntake extends Subsystem {
   public void stop() {
     cargo.set(0);
     cargo.stopMotor();
+  }
+
+  public void test(){
+  }
+
+  public void log(){
+    SmartDashboard.putNumber("Encoder count: ", encoder.get());
+    SmartDashboard.putNumber("Encoder rate: ", encoder.getRate());
   }
 }

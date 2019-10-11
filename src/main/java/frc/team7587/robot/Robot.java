@@ -15,7 +15,7 @@ import frc.team7587.robot.subsystems.Claw;
 //vision stuffs
 import org.opencv.core.Mat;
 import edu.wpi.first.cameraserver.CameraServer;
-import frc.team7587.GripPipeline;
+import frc.team7587.robot.GripPipeline;
 
 public class Robot extends TimedRobot {
 
@@ -26,20 +26,22 @@ public class Robot extends TimedRobot {
   public static ArmPiston m_arm = new ArmPiston();
   public static CargoIntake m_intake = new CargoIntake();
 
-  private GripPipeline grip = new GripPipeline();
+  // private GripPipeline grip = new GripPipeline();
+  // private Mat matt1 = new Mat();
   private CameraServer cameraFront = CameraServer.getInstance();
-  private CameraServer cameraBack = CameraServer.getInstance();
+  // private CameraServer cameraBack = CameraServer.getInstance();
 
   Command m_autoCommand;
   // SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   @Override
   public void robotInit() {
-    // grip.process(source0);
+    // grip.process(matt1);
     cameraFront.startAutomaticCapture();
-    cameraBack.getVideo(cameraFront.startAutomaticCapture());
-    cameraBack.addServer("GRIP", 1);
-    cameraBack.getInstance().putVideo("Find blue", 500, 400);
+    // cameraBack.getVideo(cameraFront.startAutomaticCapture());
+    // cameraBack.addServer("GRIP", 1);
+    // cameraBack.getInstance().putVideo("Find blue", 500, 400);
+    // GripPipeline cameraBack2 = new GripPipeline();
   }
 
   @Override
@@ -96,5 +98,6 @@ public class Robot extends TimedRobot {
   public void log() {
     m_claw.log();
     m_driveTrain.log();
+    m_intake.log();
   }
 }

@@ -31,6 +31,7 @@ public class ArmIn extends Command {
     timer.reset();
     timer.start();
     Robot.m_arm.armIn();
+    System.out.println("Arm In");
   }
 
   // Called repeatedly when this Command is scheduled to run

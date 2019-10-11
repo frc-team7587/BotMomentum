@@ -32,6 +32,7 @@ public class ArmOut extends Command {
     timer.reset();
     timer.start();
     Robot.m_arm.armOut();
+    System.out.println("Arm out");
   }
 
   // Called repeatedly when this Command is scheduled to run

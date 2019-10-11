@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team7587.robot.commands.ArmIn;
@@ -69,6 +68,13 @@ public class OI {
     int[] gamePadValues = { 1, 2, 3, 4 };
     buttonMap = getButtonMap(gamePadButtons, gamePadValues);
 
+    // for when we forget the gamepad lol
+    // btnClawOpen = new JoystickButton(logiJoy, 7);
+    // btnClawClose = new JoystickButton(logiJoy, 8);
+    // btnArmOut = new JoystickButton(logiJoy, 10);
+    // btnArmIn = new JoystickButton(logiJoy, 9);
+
+    // normal button inputs
     btnClawOpen = new JoystickButton(gamePad, buttonMap.get("X"));
     btnClawClose = new JoystickButton(gamePad, buttonMap.get("A"));
     btnRampUp = new JoystickButton(gamePad, buttonMap.get("Y"));
@@ -86,7 +92,6 @@ public class OI {
     btnArmIn.whenPressed(new ArmIn()); // right bumper
     btnCarIn.whileHeld(new CargoIn());
     btnCarOut.whileHeld(new CargoOut());
-
   }
 
   public Joystick getLogiJoy() {
@@ -105,11 +110,11 @@ public class OI {
     return btnRampDown.get();
   }
 
-  public boolean cargoInCheck(){
+  public boolean cargoInCheck() {
     return btnCarIn.get();
   }
 
-  public boolean cargoOutCheck(){
+  public boolean cargoOutCheck() {
     return btnCarOut.get();
   }
 

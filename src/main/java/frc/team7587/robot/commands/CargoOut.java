@@ -17,7 +17,6 @@ public class CargoOut extends Command {
   /**
    * Add your docs here.
    */
-  private double actualSpeed;
   public CargoOut() {
     super();
     // Use requires() here to declare subsystem dependencies

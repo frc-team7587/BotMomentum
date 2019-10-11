@@ -1,4 +1,4 @@
-package frc.team7587;
+package frc.team7587.robot;
 
 import java.io.File;
 import java.io.FileWriter;
