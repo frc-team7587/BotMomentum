@@ -31,7 +31,7 @@ public class CargoIn extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intake.intake(1);
+    Robot.m_intake.intake(0.5);
   }
 
   // Called once after timeout

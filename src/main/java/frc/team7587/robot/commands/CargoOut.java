@@ -32,7 +32,7 @@ public class CargoOut extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_intake.output(1);
+    Robot.m_intake.output(0.5);
   }
 
   // Called once after timeout

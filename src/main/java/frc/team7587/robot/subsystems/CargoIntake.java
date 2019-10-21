@@ -40,11 +40,11 @@ public class CargoIntake extends Subsystem {
   }
 
   public void output(double speed) {
-    cargo.set(-0.5 * speed);
+    cargo.set(-speed);
   }
 
   public void intake(double speed) {
-    cargo.set(0.5 * speed);
+    cargo.set(speed);
   }
 
   public void stop() {
