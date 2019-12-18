@@ -25,12 +25,20 @@ public class TeleopDrive extends Command {
   // arcade drive with joystick
   @Override
   protected void execute() {
-    /* Competition Code */ Robot.m_driveTrain.drive(stick.getThrottle() * stick.getY(),
-        0.75 * stick.getTwist() * Math.abs(stick.getThrottle()));
+    /* Competition Code */ 
+    // Robot.m_driveTrain.drive(stick.getThrottle() * stick.getY(), 0.75 * stick.getTwist() * Math.abs(stick.getThrottle()));
     // /*Oct. 5th Fair Code*/ Robot.m_driveTrain.drive(stick.getThrottle() *
     // stick.getY() * 0.25, 0.75 * stick.getTwist() *
     // Math.abs(stick.getThrottle()));
+
+    Robot.m_driveTrain.testGyro();
+    Joystick j = Robot.m_oi.getLogiJoy();
+    if(j.getRawButton(1)){
+      Robot.m_driveTrain.rotateAngle(90f);
+    }
+    
   }
+
 
   @Override
   protected boolean isFinished() {
