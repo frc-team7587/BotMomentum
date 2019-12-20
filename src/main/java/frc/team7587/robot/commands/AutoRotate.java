@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -7,51 +7,35 @@
 
 package frc.team7587.robot.commands;
 
-import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team7587.robot.Robot;
 
-/**
- * Have the robot drive tank style using the logitech F310 gamepad
- */
-public class TeleopDrive extends Command {
+public class AutoRotate extends Command {
 
-  Joystick stick = Robot.m_oi.getLogiJoy();
   private double rotateAngle;
   private int inErrZoneCount;
 
-  public TeleopDrive() {
+  public AutoRotate(double angle) {
+    this.rotateAngle = angle;
     requires(Robot.m_driveTrain);
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
   }
 
+  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    // Robot.m_driveTrain.testGyro();
-    Robot.m_driveTrain.rotateAngle(90f);
+    // Robot.m_driveTrain.rotateAngle(this.rotateAngle);
+
   }
 
-  // arcade drive with joystick
+  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    /* Competition Code */ 
-    // Robot.m_driveTrain.drive(stick.getThrottle() * stick.getY(), 0.75 * stick.getTwist() * Math.abs(stick.getThrottle()));
-    
-    // /*Oct. 5th Fair Code*/ Robot.m_driveTrain.drive(stick.getThrottle() *
-    // stick.getY() * 0.25, 0.75 * stick.getTwist() *
-    // Math.abs(stick.getThrottle()));
-
-    /*******  gyro test code ************ */
     // Robot.m_driveTrain.testGyro();
-
-    // if(stick.getRawButton(3)){
-    //   Robot.m_driveTrain.rotateAngle(90f);
-    // }else if(stick.getRawButton(2)){
-    //   Robot.m_driveTrain.stop();
-    // }
-    
   }
 
-
+  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
     double err = Robot.m_driveTrain.getTurnController().getError();
@@ -63,9 +47,16 @@ public class TeleopDrive extends Command {
     return false;
   }
 
+  // Called once after isFinished returns true
   @Override
   protected void end() {
     Robot.m_driveTrain.stop();
+    Robot.m_driveTrain.getTurnController().close();
   }
 
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
+  @Override
+  protected void interrupted() {
+  }
 }

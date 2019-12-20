@@ -16,6 +16,7 @@ import frc.team7587.robot.subsystems.Claw;
 import org.opencv.core.Mat;
 import edu.wpi.first.cameraserver.CameraServer;
 import frc.team7587.robot.GripPipeline;
+import frc.team7587.robot.commands.AutoCmdGroup;
 
 public class Robot extends TimedRobot {
 
@@ -36,8 +37,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
+    
+    // m_autoCommand = new AutoCmdGroup();
+
     // grip.process(matt1);
-    cameraFront.startAutomaticCapture();
+    
+
+    // cameraFront.startAutomaticCapture();
     // cameraBack.getVideo(cameraFront.startAutomaticCapture());
     // cameraBack.addServer("GRIP", 1);
     // cameraBack.getInstance().putVideo("Find blue", 500, 400);

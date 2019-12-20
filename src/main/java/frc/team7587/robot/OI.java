@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team7587.robot.commands.ArmIn;
 import frc.team7587.robot.commands.ArmOut;
+import frc.team7587.robot.commands.AutoRotate;
 import frc.team7587.robot.commands.CargoIn;
 import frc.team7587.robot.commands.CargoOut;
 import frc.team7587.robot.commands.CloseClaw;
@@ -59,6 +60,8 @@ public class OI {
   private final Button btnCarIn;
   private final Button btnCarOut;
 
+  // private final Button btnRotate;
+
   // Constants
   public static final double CLAW_TIMEOUT = 0.3;
 
@@ -84,6 +87,8 @@ public class OI {
     btnCarIn = new JoystickButton(logiJoy, 1);
     btnCarOut = new JoystickButton(logiJoy, 2);
 
+    // btnRotate = new JoystickButton(logiJoy, 3);
+
     btnClawOpen.whenPressed(new OpenClaw(CLAW_TIMEOUT));
     btnClawClose.whenPressed(new CloseClaw(CLAW_TIMEOUT));
     btnRampUp.whileHeld(new RampUp());
@@ -91,7 +96,9 @@ public class OI {
     btnArmOut.whenPressed(new ArmOut()); // left bumper
     btnArmIn.whenPressed(new ArmIn()); // right bumper
     btnCarIn.whileHeld(new CargoIn());
-    btnCarOut.whileHeld(new CargoOut());
+    btnCarOut.whileHeld(new AutoRotate(90f));
+
+    // btnRotate.whenPressed(new AutoRotate(90f));
   }
 
   public Joystick getLogiJoy() {

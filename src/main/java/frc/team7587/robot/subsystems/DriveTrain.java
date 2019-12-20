@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,9 +25,9 @@ public class DriveTrain extends Subsystem implements PIDOutput{
   private static final SPI.Port kGyroPort = SPI.Port.kOnboardCS0;
   private ADXRS450_Gyro m_gyro;
 
-  static final double kP = 0.03;
+  static final double kP = 0.06;
   static final double kI = 0.00;
-  static final double kD = 0.00;
+  static final double kD = 0.005;
   static final double kF = 0.00;
 
   static final double kToleranceDegrees = 2.0f;
@@ -40,16 +41,19 @@ public class DriveTrain extends Subsystem implements PIDOutput{
     SmartDashboard.putData("drive tran right", (PWMVictorSPX) m_rightMotor);
     
     m_gyro = new ADXRS450_Gyro(kGyroPort);    
-    m_gyro.setPIDSourceType(PIDSourceType.kRate);
     m_gyro.calibrate();
+    m_gyro.reset();
+    // m_gyro.setPIDSourceType(PIDSourceType.kRate);
 
     turnController = new PIDController(kP, kI, kD, kF, m_gyro, this);
     
-    // turnController.setInputRange(-180.0f, 180.0f);
+    turnController.setInputRange(-180.0f, 180.0f);
     // turnController.setOutputRange(-1.0, 1.0);
+    turnController.setOutputRange(-0.75, 0.75);
     turnController.setAbsoluteTolerance(kToleranceDegrees);
     turnController.setContinuous(true);
   
+    testGyro();
   }
 
   @Override
@@ -58,38 +62,41 @@ public class DriveTrain extends Subsystem implements PIDOutput{
   }
 
   public void testGyro(){
-    double angle = m_gyro.getAngle();
-    double rate = m_gyro.getRate();
-    String name = m_gyro.getName();
-
-    SmartDashboard.putNumber("gyro rate", rate);
-    SmartDashboard.putNumber("gyro angle", angle);
-    SmartDashboard.putString("gyro name", name);
-
+    SmartDashboard.putNumber("gyro rate", m_gyro.getRate());
+    SmartDashboard.putNumber("gyro angle", m_gyro.getAngle());
+    SmartDashboard.putString("gyro name", m_gyro.getName());
+    SmartDashboard.putNumber("PID output", rotateToAngleRate);
+    SmartDashboard.putNumber("PID error", turnController.getError());
   }
 
-  public void rotateAngle(double angle){
-    turnController.setSetpoint(angle);
+  public void rotateAngle(double targetAngle){
+    // m_gyro.reset();
+    turnController.reset();
+    turnController.setSetpoint(targetAngle);
     turnController.enable();
 
-    // the rotateAngle is now output from the controller, use it here:
+    // the rotateAngleRate is now output from the controller
     m_drive.arcadeDrive(0, this.rotateToAngleRate);
-
+    
   }
 
   public void drive(double speed, double rotation) {
     m_drive.arcadeDrive(speed, rotation);
   }
 
+  public void stop(){
+    m_drive.arcadeDrive(0,0);
+    m_leftMotor.stopMotor();
+    m_rightMotor.stopMotor();
+    
+  }
+
   public void log() {
-    Joystick joy = Robot.m_oi.getLogiJoy();
-    SmartDashboard.putNumber("Throttle: ", joy.getThrottle());
-    SmartDashboard.putNumber("Drive Y: ", joy.getY());
-    SmartDashboard.putNumber("Drive Z: ", joy.getTwist());
 
-    SmartDashboard.putNumber("Drive New Vaulue: ", -joy.getThrottle() * joy.getY());
-    SmartDashboard.putNumber("Drive old Value: ", ((-0.5 * joy.getThrottle()) + 1.5) * joy.getY());
+  }
 
+  public PIDController getTurnController(){
+    return this.turnController;
   }
 
   @Override
