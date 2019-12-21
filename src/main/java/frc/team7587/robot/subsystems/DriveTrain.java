@@ -79,7 +79,7 @@ public class DriveTrain extends Subsystem implements PIDOutput{
     m_drive.arcadeDrive(0, this.rotateToAngleRate);
   }
 
-  public void getGyroAngle(){
+  public double getGyroAngle(){
     return m_gyro.getAngle();
   }
 
@@ -102,6 +102,9 @@ public class DriveTrain extends Subsystem implements PIDOutput{
   public PIDController getTurnController(){
     return this.turnController;
   }
-
+  
+  public void log(){
+    
+  }
 
 }
